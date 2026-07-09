@@ -13,15 +13,15 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Sql)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql)
 
 set(PROJECT_SOURCES
-    main.cpp
-    mainwindow.cpp
-    mainwindow.h
-    myclass.cpp
-    myclass.h
-    projectclass.cpp
-    projectclass.h
-    tableclass.cpp
-    tableclass.h
+    scr/main.cpp
+    scr/mainwindow.cpp
+    scr/myclass.cpp
+    scr/projectclass.cpp
+    scr/tableclass.cpp
+    include/mainwindow.h
+    include/myclass.h
+    include/projectclass.h
+    include/tableclass.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -40,6 +40,10 @@ else()
         )
     endif()
 endif()
+
+target_include_directories(TaskManager PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
 
 target_link_libraries(TaskManager PRIVATE
     Qt${QT_VERSION_MAJOR}::Widgets
